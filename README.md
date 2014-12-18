@@ -38,3 +38,11 @@ Sparse programs
 All the kernels accept files written in SRW (sparse row-wise) format. There are example files in the "matrices" directory. You must specify exactly how large the matrix is and how many nonzero elements there are.
 
 *TODO: Link to SRW format description*
+
+Timing
+-
+*TODO: Describe the four different timing schemes and why it works.*
+
+License
+-
+All the software is distributed under the MIT License. See separate file LICENSE.
