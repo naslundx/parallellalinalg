@@ -12,10 +12,13 @@ These programs were written by Marcus Näslund in 2014 and used by Marcus Näslu
 Contents
 -
 This repository contains four major kernels:
-- Dense matrix-vector multiplication
-- Dense matrix-matrix multiplication
-- Sparse matrix-vector multiplication
-- Sparse matrix-matrix multiplication
+
+* Dense matrix-vector multiplication
+* Dense matrix-matrix multiplication
+* Sparse matrix-vector multiplication
+* Sparse matrix-matrix multiplication
+
+There is also a "matlab" directory which contains scripts for generating sparse matrices in the correct (SRW) format for use with the sparse programs.
 
 Prerequisites
 -
@@ -23,11 +26,19 @@ You will need a recent version of gcc and the COPRTHR SDK 1.6 or later, which gi
 
 How to install
 -
-Simply clone this git repo:
-    
-    git clone ...
+If you don't have git installed, first do that, for example:
 
-*TODO: Fix easy compilation and write here how to do*
+    sudo apt-get install git
+
+Then clone this git repo:
+    
+    git clone https://github.com/naslundx/parallellalinalg.git
+    
+In each subdirectory of the "src" directory there is a makefile. Open each folder and type
+
+    make
+    
+and the program will be compiled. 
 
 Dense programs
 -
@@ -35,13 +46,19 @@ Dense programs
 
 Sparse programs
 -
-All the kernels accept files written in SRW (sparse row-wise) format. There are example files in the "matrices" directory. You must specify exactly how large the matrix is and how many nonzero elements there are.
+All the kernels accept files written in SRW (sparse row-wise) format. There are example files in the "matrices" directory. You must specify exactly how large the matrix is and how many nonzero elements there are. For a description of the SRW format, see the "Yale" format at http://en.wikipedia.org/wiki/Sparse_matrix.
+
 
 *TODO: Link to SRW format description*
 
 Timing
 -
-*TODO: Describe the four different timing schemes and why it works.*
+All programs use the built-in clock() functionality of C to measure time. Since the parallellism only takes place on the Epiphany chip, this works fine. After the program has run, it outputs four timings:
+
+* t_alloc: The time it takes to allocate memory
+* t_clalloc: The time it takes to fill this memory (with data from file and/or generated random data)
+* t_calc: The time spent waiting on the Epiphany chip to calculate
+* t_full: Full runtime.
 
 License
 -
